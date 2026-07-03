@@ -1,6 +1,6 @@
 ---
-title: Elasticsearch Product Index Builder
-emoji: 🛒
+title: Product Index Builder
+emoji: 🔎
 colorFrom: blue
 colorTo: gray
 sdk: docker
@@ -8,10 +8,22 @@ app_port: 7860
 pinned: false
 ---
 
-# Elasticsearch Product Index Builder
+# Product Index Builder
 
-## Local Development
-```bash
-docker build -t elasticsearch-product-index-builder .
-docker run -p 7860:7860 elasticsearch-product-index-builder
-```
+A from-scratch inverted index over 500 products: BM25-style scoring, field boosts, filters, facets, and highlighting.
+
+The landing page is an interactive API console — click any endpoint to call the live API.
+
+## API
+
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/health` | Ready + doc count |
+| GET | `/search?q=` | Ranked search with filters + pagination |
+| GET | `/facets?q=` | Category/color/price facets |
+| GET | `/products/{id}` | Product detail |
+| POST | `/index/rebuild` | Rebuild the index |
+
+## Stack
+
+Python 3.11 · FastAPI · SQLite · Pydantic v2 · Next.js 14 (static export) · Tailwind CSS · Docker
